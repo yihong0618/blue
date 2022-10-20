@@ -32,6 +32,12 @@ sudo rfcomm connect 1 ${地址} &
 - 设置 GitHub Actions
 - Enjoy it
 
+## raspberry server
+
+- pip install -r requirements.txt
+- nohub python3 main.py &
+- or use Gunicorn or uWSGI or others
+
 ## 参考资料
 
 - [DingdangD1-PoC](https://github.com/LynMoe/DingdangD1-PoC)
