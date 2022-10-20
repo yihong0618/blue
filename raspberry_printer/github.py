@@ -8,6 +8,8 @@ def make_github_new_text(data):
         return ""
     title = data.get("title", "")
     content = data.get("content", "")
+    if not title:
+        return ""
     info_repo = f"REPO: {repo}\n"
     info_time = str(datetime.now()) + "\n\n"
     info_start = f"新的 {info_type.upper()} 来了来了来了！\n\n"
