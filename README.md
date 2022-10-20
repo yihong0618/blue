@@ -13,7 +13,7 @@
 3. discoverable on
 4. scan on --> 这步找到蓝牙热敏打印机的地址
 5. trust ${地址}
-6. pari ${地址}
+6. pair ${地址}
 
 ---
 利用 rfcomm 连接
@@ -41,7 +41,7 @@ sudo rfcomm connect 1 ${地址} &
 ## GitHub Actions
 
 - change ./github/workflows/new_pr_bluetooth.yml to your own
-- add secret `BLUE` in your config
+- add secret `BLUE` in your repo (Actions secrets)
 - Done or left some issues
 
 ## 参考资料
