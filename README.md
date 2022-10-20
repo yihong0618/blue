@@ -12,7 +12,7 @@
 2. agent on
 3. discoverable on
 4. scan on --> 这步找到蓝牙热敏打印机的地址
-5. trust ${}
+5. trust ${地址}
 6. pari ${地址}
 
 ---
@@ -36,3 +36,4 @@ sudo rfcomm connect 1 ${地址} &
 
 - [DingdangD1-PoC](https://github.com/LynMoe/DingdangD1-PoC)
 - [Cloudflare Argo Tunnel 小试：我终于可以用树莓派做网站啦](https://dmesg.app/argo-tunnel.html)
+- [最像素字体](https://github.com/SolidZORO/zpix-pixel-font)
