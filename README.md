@@ -47,6 +47,7 @@ sudo rfcomm connect 1 ${地址} &
 ## 参考资料
 
 - [DingdangD1-PoC](https://github.com/LynMoe/DingdangD1-PoC)
+- [GGLyn swift version](https://github.com/Lakr233/GGLyn)
 - [Cloudflare Argo Tunnel 小试：我终于可以用树莓派做网站啦](https://dmesg.app/argo-tunnel.html)
 - [最像素字体](https://github.com/SolidZORO/zpix-pixel-font)
 
