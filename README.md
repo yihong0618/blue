@@ -3,7 +3,7 @@
 
 新的 PR(Issue) 来了来了来了!
 
-## 树莓派 + [蓝牙热敏打印机](https://mobile.yangkeduo.com/goods2.html?goods_id=215919711645) + 内网穿透
+## 树莓派 + [蓝牙热敏打印机](https://mobile.yangkeduo.com/goods2.html?goods_id=215919711645) + 内网穿透 + GitHub Actions
 
 
 ## 如何在树莓派中设置蓝牙设备并找到地址
@@ -37,6 +37,12 @@ sudo rfcomm connect 1 ${地址} &
 - pip install -r requirements.txt
 - nohub python3 main.py &
 - or use Gunicorn or uWSGI or others
+
+## GitHub Actions
+
+- change ./github/workflows/new_pr_bluetooth.yml to your own
+- add secret `BLUE` in your config
+- Done or left some issues
 
 ## 参考资料
 
