@@ -10,7 +10,7 @@ def make_kai_xin_learning_text(data):
     if not unit_list:
         # first three units
         unit_list = [1, 2, 3]
-    text = "新的单元单词 str(unit_list)"
+    text = f"新的单元单词 str(unit_list)\n"
     dt = pd.read_csv(MY_LEARNING_BOOK_RESOURCE)
     dt = dt[dt["UnitID"].isin(unit_list)]
     return info_time + text + "\n".join(dt["Word"].to_list())

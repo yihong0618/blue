@@ -62,6 +62,12 @@ def call_bluetooth():
     if text:
         try:
             call_printer(None, text)
+            return (
+            json.dumps({"success": False, "err": "no generate text to print"}),
+            200,
+            {"ContentType": "application/json"},
+            )
+
         except Exception as e:
             return (
                 json.dumps({"success": False, "err": str(e)}),
