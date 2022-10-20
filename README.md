@@ -35,7 +35,7 @@ sudo rfcomm connect 1 ${地址} &
 ## raspberry server
 
 - pip install -r requirements.txt
-- nohub python3 main.py &
+- nohup python3 main.py &
 - or use Gunicorn or uWSGI or others
 
 ## GitHub Actions
