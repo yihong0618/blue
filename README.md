@@ -43,3 +43,8 @@ sudo rfcomm connect 1 ${地址} &
 - [DingdangD1-PoC](https://github.com/LynMoe/DingdangD1-PoC)
 - [Cloudflare Argo Tunnel 小试：我终于可以用树莓派做网站啦](https://dmesg.app/argo-tunnel.html)
 - [最像素字体](https://github.com/SolidZORO/zpix-pixel-font)
+
+## 赞赏
+
+- 谢谢就够了
+- Just enjoy it.
