@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Call my bluetooth printer
-      if: ${{ github.event.issue.pull_request }}
+    - name: Call my printer
+      if: ${{ github.event.pull_request }}
       run: |
         curl -i -X POST -H 'x-api-key: ${{ secrets.BLUE }}' -H "Content-Type: application/json" -d '{"type": "github", "info_type": "PR", "title": "${{ env.PR_TITLE }}", "content": "${{ env.PR_BODY }}", "repo":  "${{ github.repository }}"}' https://app.yihong0618.me/call_bluetooth
       env:
