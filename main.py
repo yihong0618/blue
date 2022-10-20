@@ -25,10 +25,15 @@ def index():
 @app.route("/call_bluetooth", methods=["POST"])
 def call_bluetooth():
     headers = request.headers
-    auth = headers.get("X-Api-Key")
+    auth = headers.get("X-Api-Key", "")
     if auth != SECRET_TOKEN:
         return (
-            json.dumps({"success": False, "err": "You need secret token same in the cofig file"}),
+            json.dumps(
+                {
+                    "success": False,
+                    "err": "You need secret token same in the cofig file",
+                }
+            ),
             200,
             {"ContentType": "application/json"},
         )
