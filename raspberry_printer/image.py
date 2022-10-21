@@ -28,7 +28,7 @@ def generate_image(src, text, font=FONT_RESOURCE):
                 l = 0.5
             else:
                 l = 1
-            if line_length + l > WIDTH // font_size:
+            if line_length + l > WIDTH // font_size - 2:
                 content += "\n"
                 line_length = 0
             line_length += l
