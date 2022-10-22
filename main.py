@@ -37,7 +37,7 @@ def call_bluetooth():
             200,
             {"ContentType": "application/json"},
         )
-    data = json.loads(request.data)
+    data = json.loads(request.data.decode('utf8'), strict=False)
     text = ""
     if data:
         to_printer_type = data.get("type", "")
