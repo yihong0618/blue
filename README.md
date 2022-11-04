@@ -44,6 +44,13 @@ sudo rfcomm connect 1 ${地址} &
 - add secret `BLUE` in your repo (Actions secrets)
 - Done or left some issues
 
+## 小米音箱
+
+- pip3 install git+https://github.com/yihong0618/MiService.git
+- 参考 [MiService](https://github.com/yihong0618/MiService) README 增加 env -> .bashrc
+- 测试 `micli 5-3 '哈哈哈哈哈您有新的PULLREQUEST请注意查收'` 看看是否成功 
+- 重新部署
+
 ## 参考资料
 
 - [DingdangD1-PoC](https://github.com/LynMoe/DingdangD1-PoC)
