@@ -61,7 +61,7 @@ def call_bluetooth():
         )
     if text:
         try:
-            call_printer(None, text)
+            call_printer(None, text, to_printer_type=="github", github_type=data.get("info_type", ""))
             return (
                 json.dumps({"success": False, "err": "no generate text to print"}),
                 200,
