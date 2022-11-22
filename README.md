@@ -1,6 +1,10 @@
 # blue
 ![image](https://user-images.githubusercontent.com/15976103/196897891-a9474adc-9e60-4340-9406-736829639092.png)
 
+
+https://user-images.githubusercontent.com/15976103/203185034-fe1e0b6e-f373-45fe-884e-2eec649355f3.mp4
+
+
 新的 PR(Issue) 来了来了来了!
 
 ## 树莓派 + [蓝牙热敏打印机](https://mobile.yangkeduo.com/goods2.html?goods_id=215919711645) + 内网穿透 + GitHub Actions
