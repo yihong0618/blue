@@ -1,7 +1,7 @@
 import json
 import pickle
 from flask import Flask, request
-from flask_crontab import Crontab
+from flask_apscheduler import APScheduler
 from datetime import datetime
 import os
 
@@ -14,17 +14,15 @@ from openai import OpenAI
 from pycoingecko import CoinGeckoAPI
 
 
-client = OpenAI()
-if os.environ.get("OPENAI_API_BASE"):
-    client = OpenAI(base_url=os.environ.get("OPENAI_API_BASE"))
-else:
-    client = OpenAI()
-
 cg = CoinGeckoAPI()
 
 
 app = Flask(__name__)
-crontab = Crontab(app)
+scheduler = APScheduler()
+# if you don't wanna use a config, you can set options here:
+# scheduler.api_enabled = True
+scheduler.init_app(app)
+scheduler.start()
 
 TYPE_DICT = {
     "github": make_github_new_text,
@@ -106,8 +104,18 @@ def call_bluetooth():
     )
 
 
-@crontab.job(minute="0,30")
-def my_scheduled_job():
+@scheduler.task("interval", id="job_2", minutes=30)
+def bitcoins_show():
+    # try to make client, the client will lose connection after a while so we make it every time
+    client = None
+    try:
+        client = OpenAI()
+        if os.environ.get("OPENAI_API_BASE"):
+            client = OpenAI(base_url=os.environ.get("OPENAI_API_BASE"))
+        else:
+            client = OpenAI()
+    except:
+        pass
     text = ""
     last_bitcoin_price = None
     last_ethereum_price = None
@@ -144,30 +152,31 @@ def my_scheduled_job():
         text += f"----> Bitcoin: {now_bitcoin_price}\n"
         text += f"----> Ethereum: {now_ethereum_price}\n"
     text += "\n"
-    if (
-        last_bitcoin_price
-        and now_bitcoin_price > last_bitcoin_price
-        and (now_bitcoin_price - last_bitcoin_price) / last_bitcoin_price > 0.001
-    ):
-        prompt = f"比特币涨了 {now_bitcoin_price-last_bitcoin_price} USD 请写一段说明我厉害的话，answer in Chinese or English Choose one to answer"
-        completion = client.chat.completions.create(
-            messages=[{"role": "user", "content": prompt}], model="gpt-4-0613"
-        )
-        answer = completion.choices[0].message.content.encode("utf8").decode()
-        text += "夸我一下：\n"
-        text += answer
-    if (
-        last_bitcoin_price
-        and now_bitcoin_price < last_bitcoin_price
-        and (last_bitcoin_price - now_bitcoin_price) / last_bitcoin_price > 0.001
-    ):
-        prompt = f"比特币跌了 {last_bitcoin_price-now_bitcoin_price} USD 请写一段激励我给我信心的话，answer in Chinese or English Choose one to answer"
-        completion = client.chat.completions.create(
-            messages=[{"role": "user", "content": prompt}], model="gpt-4-0613"
-        )
-        answer = completion.choices[0].message.content.encode("utf8").decode()
-        text += "激励我一下：\n"
-        text += answer
+    if client:
+        if (
+            last_bitcoin_price
+            and now_bitcoin_price > last_bitcoin_price
+            and (now_bitcoin_price - last_bitcoin_price) / last_bitcoin_price > 0.001
+        ):
+            prompt = f"比特币涨了 {now_bitcoin_price-last_bitcoin_price} USD 请写一段说明我厉害的话，answer in Chinese or English Choose one to answer"
+            completion = client.chat.completions.create(
+                messages=[{"role": "user", "content": prompt}], model="gpt-4-0613"
+            )
+            answer = completion.choices[0].message.content.encode("utf8").decode()
+            text += "夸我一下：\n"
+            text += answer
+        if (
+            last_bitcoin_price
+            and now_bitcoin_price < last_bitcoin_price
+            and (last_bitcoin_price - now_bitcoin_price) / last_bitcoin_price > 0.001
+        ):
+            prompt = f"比特币跌了 {last_bitcoin_price-now_bitcoin_price} USD 请写一段激励我给我信心的话，answer in Chinese or English Choose one to answer"
+            completion = client.chat.completions.create(
+                messages=[{"role": "user", "content": prompt}], model="gpt-4-0613"
+            )
+            answer = completion.choices[0].message.content.encode("utf8").decode()
+            text += "激励我一下：\n"
+            text += answer
 
     call_printer(None, text)
 

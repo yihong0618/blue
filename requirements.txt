@@ -3,3 +3,6 @@ pillow
 flask
 pycoingecko
 flask-crontab
+tzlocal==2.1
+Flask-APScheduler
+openai
