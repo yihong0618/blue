@@ -32,9 +32,13 @@ def call_printer(src, text, is_github_type=False, github_type="Issue"):
     )
     ########## CALL SPEAKER ###########
     now = datetime.now()
-    if is_github_type and now.hour > 8 and now.hour < 21: # if I am sleeping do not call SPEAKER
+    if (
+        is_github_type and now.hour > 8 and now.hour < 21
+    ):  # if I am sleeping do not call SPEAKER
         try:
-           subprocess.check_output(['micli', '5-3', f"哈哈哈哈哈，您有新的{github_type}请注意查收"]) 
+            subprocess.check_output(
+                ["micli", "5-3", f"哈哈哈哈哈，您有新的{github_type}请注意查收"]
+            )
         except Exception as e:
             print(f"Wrong call the speaker {str(e)}")
     # send the image data in chunks
