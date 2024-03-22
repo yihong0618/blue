@@ -134,7 +134,7 @@ def bitcoins_show():
         ids=["ethereum", "bitcoin"], vs_currencies=["usd", "cny"]
     )
     coins_price_list.append(coins_price_now_dict)
-    with open("temp.bin", "ab") as f:
+    with open("temp.bin", "wb") as f:
         pickle.dump(coins_price_list, f)
     now_bitcoin_price = coins_price_now_dict.get("bitcoin", {}).get("usd", None)
     now_ethereum_price = coins_price_now_dict.get("ethereum", {}).get("usd", None)
